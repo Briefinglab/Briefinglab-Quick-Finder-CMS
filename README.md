@@ -1,4 +1,4 @@
-BriefingLab News CMS
+Briefinglab News CMS
 ===============
 
 This plugin give you a CMS section to manage the news, events and fair content with the usual and very well known WordPress paradigm. Then it will provide you the possibility to implement
