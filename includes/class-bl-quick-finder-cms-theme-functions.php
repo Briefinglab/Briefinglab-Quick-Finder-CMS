@@ -5,14 +5,17 @@ class Bl_Quick_Finder_Cms_Theme_Functions {
     function __construct() { }
 
     public static function  define_theme_functions() {
-       /*
-	   if( ! function_exists( 'lps_get_related_posts' ) ) {
-            function lps_get_related_posts( $post ) {
-                $lps_data_model = Linking_Posts_Model::getInstance();
-                return $lps_data_model->get_related_posts( $post );
+
+	   if( ! function_exists( 'bl_quick_finder_content' ) ) {
+            function bl_quick_finder_content( $content ) {
+
+                $content = apply_filters( 'bl-quick-finder-content', $content );
+
+                return $content;
+
             }
         }
-		*/
+
 
     }
 } 

@@ -17,7 +17,7 @@ class Bl_Quick_Finder_Cms_Model {
 
         $args = array(
             'post_type' => 'bl-quick-finder',
-            'limit' => $atts['limit']
+            'posts_per_page' => $atts['limit']
         );
 
         if( ! empty ( $atts['categories'] ) ){

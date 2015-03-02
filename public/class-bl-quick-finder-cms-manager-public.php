@@ -104,7 +104,7 @@ class Bl_Quick_Finder_Cms_Manager_Public {
 
     }
 
-    private function include_item_bl_quick_finder_template( $bl_slide, $bl_slide_index, $atts ){
+    private function include_item_bl_quick_finder_template( $bl_quick_finder_item, $bl_quick_finder_index, $atts ){
 
         include $this->locate_template_bl_quick_finder( 'item-quick-finder.php', $atts );
 
@@ -124,7 +124,12 @@ class Bl_Quick_Finder_Cms_Manager_Public {
 
         }
 
-        $check_templates[] =  $custom_template_folder . '/' . substr( $template, 0, -4 ) . '-' . $post->post_name . '.php';
+
+        if( $post ) {
+
+            $check_templates[] = $custom_template_folder . '/' . substr($template, 0, -4) . '-' . $post->post_name . '.php';
+
+        }
 
         if( isset( $atts['categories'] ) ) {}{
 

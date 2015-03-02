@@ -103,6 +103,7 @@ class Bl_Quick_Finder_Cms_Manager {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-bl-quick-finder-cms-manager-options.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-bl-quick-finder-cms-manager-public.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-bl-cache-html-manager.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-bl-quick-finder-cms-theme-functions.php';
 
         require_once plugin_dir_path( __FILE__ ) . 'class-bl-quick-finder-cms-loader.php';
         $this->loader = new Bl_Quick_Finder_Cms_Loader();
@@ -157,6 +158,8 @@ class Bl_Quick_Finder_Cms_Manager {
         $public = new Bl_Quick_Finder_Cms_Manager_Public( $this->get_version(), $this->options, $data_model, $cache_manager);
 
         $this->loader->add_action( 'init', $public, 'create_shortcode_bl_quick_finder' );
+
+        Bl_Quick_Finder_Cms_Theme_Functions::define_theme_functions();
 
     }
 
