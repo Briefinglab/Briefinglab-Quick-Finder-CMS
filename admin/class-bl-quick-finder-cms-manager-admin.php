@@ -104,7 +104,7 @@ class Bl_Quick_Finder_Cms_Manager_Admin {
 
     public function add_delete_cache_menu_link(){
 
-        add_submenu_page( 'edit.php?post_type=bl-quick-finder', __( 'Briefinglab Quick Finder CMS Cache', 'bl-quick-finder-cms' ), __( 'Delete Cache', 'bl-quick-finder-cms' ), 'manage_options', 'delete-cache', array( $this, 'delete_cache' ) );
+        add_submenu_page( 'edit.php?post_type=bl-quick-finder', __( 'Briefinglab Quick Finder CMS Cache', 'bl-quick-finder-cms' ), __( 'Delete Cache', 'bl-quick-finder-cms' ), 'manage_options', 'delete-cache-quick-finder', array( $this, 'delete_cache' ) );
 
     }
 
@@ -140,6 +140,46 @@ class Bl_Quick_Finder_Cms_Manager_Admin {
     function load_textdomain() {
 
         load_plugin_textdomain( 'bl-quick-finder-cms', false, dirname( dirname( plugin_basename( __FILE__ ) ) )  . '/langs/' );
+
+    }
+
+    public function add_meta_box_quick_finder_link() {
+
+        add_meta_box('quick_finder_link',
+            __("Quick Finder Link", 'bl-quick-finder-cms'),
+            array($this, 'render_meta_box_quick_finder_link'),
+            'bl-quick-finder' ,
+            'side'
+        );
+
+    }
+
+    function render_meta_box_quick_finder_link( $post ) {
+
+        global $post;
+
+        $value = get_post_meta( $post->ID, 'quick-finder-link', true );
+
+        echo '<input name="quick-finder-link" type="text" class="large-text ui-autocomplete-input" value="'.$value.'">';
+
+        echo '<p>' . _e( 'Aggiungi il link da associare al quick finder', 'bl-quick-finder-cms' ) . '</p>';
+
+    }
+
+    function save_meta_box_quick_finder_link( $post_id ) {
+
+        if ( ! isset( $_POST['quick-finder-link'] ) )
+            return $post_id;
+
+        if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+            return $post_id;
+
+        if ( ! current_user_can( 'edit_post', $post_id ) )
+            return $post_id;
+
+        $mydata = sanitize_text_field( $_POST['quick-finder-link'] );
+
+        update_post_meta( $post_id, 'quick-finder-link', $mydata );
 
     }
 
