@@ -54,8 +54,9 @@ class Bl_Quick_Finder_Cms_Manager_Admin {
             'has_archive'        => true,
             'hierarchical'       => false,
             'map_meta_cap'       => true,
+            'exclude_from_search'=> true,
             'menu_position'      => null,
-            'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' )
+            'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'page-attributes' )
         );
 
         register_post_type( 'bl-quick-finder', $args );
@@ -116,7 +117,7 @@ class Bl_Quick_Finder_Cms_Manager_Admin {
 
         <div class="wrap">
 
-            <h2><?php _e( 'Quick Finder CMS Cache', 'bl-quick-finder-cms' ); ?>?></h2>
+            <h2><?php _e( 'Quick Finder CMS Cache', 'bl-quick-finder-cms' ); ?></h2>
 
             <?php if( $delete_status ):?>
 
