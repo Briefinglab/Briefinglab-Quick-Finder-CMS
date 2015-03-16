@@ -184,5 +184,45 @@ class Bl_Quick_Finder_Cms_Manager_Admin {
 
     }
 
+    public function add_meta_box_quick_finder_css() {
+
+        add_meta_box('quick_finder_css',
+            __("Quick Finder CSS", 'bl-quick-finder-cms'),
+            array($this, 'render_meta_box_quick_finder_css'),
+            'bl-quick-finder' ,
+            'side'
+        );
+
+    }
+
+    function render_meta_box_quick_finder_css( $post ) {
+
+        global $post;
+
+        $value = get_post_meta( $post->ID, 'quick-finder-css', true );
+
+        echo '<input name="quick-finder-css" type="text" class="large-text ui-autocomplete-input" value="'.$value.'">';
+
+        echo '<p>' . _e( 'Aggiungi il CSS da associare al quick finder', 'bl-quick-finder-cms' ) . '</p>';
+
+    }
+
+    function save_meta_box_quick_finder_css( $post_id ) {
+
+        if ( ! isset( $_POST['quick-finder-css'] ) )
+            return $post_id;
+
+        if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+            return $post_id;
+
+        if ( ! current_user_can( 'edit_post', $post_id ) )
+            return $post_id;
+
+        $mydata = sanitize_text_field( $_POST['quick-finder-css'] );
+
+        update_post_meta( $post_id, 'quick-finder-css', $mydata );
+
+    }
+
 
 }
