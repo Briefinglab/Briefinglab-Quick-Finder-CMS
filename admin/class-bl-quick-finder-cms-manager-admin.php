@@ -195,7 +195,7 @@ class Bl_Quick_Finder_Cms_Manager_Admin {
 
     }
 
-    function render_meta_box_quick_finder_css( $post ) {
+    public function render_meta_box_quick_finder_css( $post ) {
 
         global $post;
 
@@ -207,7 +207,7 @@ class Bl_Quick_Finder_Cms_Manager_Admin {
 
     }
 
-    function save_meta_box_quick_finder_css( $post_id ) {
+    public function save_meta_box_quick_finder_css( $post_id ) {
 
         if ( ! isset( $_POST['quick-finder-css'] ) )
             return $post_id;
@@ -224,5 +224,32 @@ class Bl_Quick_Finder_Cms_Manager_Admin {
 
     }
 
+    public function quick_finder_filter_manage_posts() {
+        global $typenow;
+        if( $typenow == "bl-quick-finder"){
+            $filters = get_object_taxonomies( $typenow, OBJECT );
+            foreach ($filters as $tax) {
+                $tax_slug = $tax->name;
+                $tax_obj = get_taxonomy($tax_slug);
+                $tax_name = $tax_obj->labels->name;
+                $terms = get_terms($tax_slug);
+                echo "<select name='$tax_slug' id='$tax_slug' class='postform'>";
+                echo "<option value=''>Show All $tax_name</option>";
+                foreach ($terms as $term) { echo '<option value='. $term->slug, (isset($_GET[$tax_slug]) && $_GET[$tax_slug] == $term->slug) ? ' selected="selected"' : '','>' . $term->name . '</option>'; }
+                echo "</select>";
+            }
+        }
+    }
+
+    function delete_cache_updating_post( $post_id, $post, $update ) {
+
+        // If this isn't a 'book' post, don't update it.
+        if ( 'bl-quick-finder' != $post->post_type ) {
+            return;
+        }
+
+        $this->cache_manager->delete_cache();
+
+    }
 
 }
