@@ -224,7 +224,7 @@ class Bl_Quick_Finder_Cms_Manager_Admin {
 
     }
 
-    public function quick_finder_filter_manage_posts() {
+    public function category_filter_manage_posts() {
         global $typenow;
         if( $typenow == "bl-quick-finder"){
             $filters = get_object_taxonomies( $typenow, OBJECT );
