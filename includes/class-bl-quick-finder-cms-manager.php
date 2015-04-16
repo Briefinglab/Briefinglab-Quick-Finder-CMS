@@ -135,7 +135,7 @@ class Bl_Quick_Finder_Cms_Manager {
         $this->loader->add_action( 'save_post', $admin, 'save_meta_box_quick_finder_link' );
         $this->loader->add_action( 'add_meta_boxes',$admin , 'add_meta_box_quick_finder_css' );
         $this->loader->add_action( 'save_post', $admin, 'save_meta_box_quick_finder_css' );
-        $this->loader->add_action( 'restrict_manage_posts', $admin, 'quick_finder_filter_manage_posts' );
+        $this->loader->add_action( 'restrict_manage_posts', $admin, 'category_filter_manage_posts' );
         $this->loader->add_action( 'save_post', $admin, 'delete_cache_updating_post', 10, 3  );
 
 /**
