@@ -88,14 +88,14 @@ class Bl_Quick_Finder_Cms_Manager_Public {
     }
 
 
-    private function include_start_bl_quick_finder_template( $bl_slides, $atts ){
+    private function include_start_bl_quick_finder_template( $bl_quick_finders, $atts ){
 
         include $this->locate_template_bl_quick_finder( 'start-quick-finder.php', $atts );
 
     }
 
 
-    private function include_end_bl_quick_finder_template( $bl_slides, $atts ){
+    private function include_end_bl_quick_finder_template( $bl_quick_finders, $atts ){
 
         include $this->locate_template_bl_quick_finder( 'end-quick-finder.php', $atts );
 

@@ -14,11 +14,11 @@ global $bl_quick_finders_printed;
 ?>
 
 <div class="item <?php echo $bl_quick_finder_class?>">
-    <?php if ( has_post_thumbnail( $bl_quick_finder->ID ) ) { // check if the post has a Post Thumbnail assigned to it.
-        echo get_the_post_thumbnail( $bl_quick_finder->ID );
+    <?php if ( has_post_thumbnail( $bl_quick_finder_item->ID ) ) { // check if the post has a Post Thumbnail assigned to it.
+        echo get_the_post_thumbnail( $bl_quick_finder_item->ID );
     }?>
     <div class="carousel-caption">
-        <h2><?php echo $bl_quick_finder->post_title; ?></h2>
-        <?php echo $bl_quick_finder->post_content; ?>
+        <h2><?php echo $bl_quick_finder_item->post_title; ?></h2>
+        <?php echo $bl_quick_finder_item->post_content; ?>
     </div>
 </div>
