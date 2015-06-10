@@ -9,13 +9,14 @@ if(!class_exists('Bl_Cache_Html_Manager')){
         {
 
             $this->cache_directory = $cache_directory;
-
         }
 
 
         public function cache_html($html, $id)
         {
 
+            if(!is_dir($this->get_cache_html_dir()))
+                mkdir($this->get_cache_html_dir());
             $file_path = $this->get_cache_html_dir() . $id . ".html";
 
             if ($file = fopen($file_path, "w")) {
@@ -68,6 +69,7 @@ if(!class_exists('Bl_Cache_Html_Manager')){
 
             try {
 
+                if(!is_dir($this->get_cache_html_dir())) return false;
                 $files = scandir($this->get_cache_html_dir());
 
                 array_shift($files); // remove .
